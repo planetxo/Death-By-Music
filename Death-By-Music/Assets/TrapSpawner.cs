@@ -14,7 +14,9 @@ public class TrapSpawner : MonoBehaviour {
 	public GameObject Violin;
 	public GameObject Player;
 
-	public int MaxNumberOfTombones;
+	public const int MaxNumberOfTombones = 10;
+
+	GameObject[] trombones = new GameObject[MaxNumberOfTombones];
 
 	//minimum time between traps spawns
 	[Range(0,5)]
@@ -71,7 +73,7 @@ public class TrapSpawner : MonoBehaviour {
 				Trombone.gameObject.SetActive(true);
 				break;
 			case (int)TrapTypes.E_VIOLIN:
-				Instantiate(Violin, new Vector3(Player.transform.position.x + randMoveAmount, 100, Player.transform.position.z), this.transform.rotation);
+				Instantiate(Violin, new Vector3(Player.transform.position.x + randMoveAmount, 100, Player.transform.position.z), Player.transform.rotation);
 				break;
 		}
 	}

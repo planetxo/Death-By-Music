@@ -18,7 +18,7 @@ public class TrapsFallStraight : MonoBehaviour {
 	int incremeantMultiplier;
 	float timeSinceLastSpeedIncrease;
 	float speed;
-	float minY;
+	public float minY;
 	TrapSpawner trapSpawner;
 	// Use this for initialization
 	void Start () {
@@ -46,7 +46,7 @@ public class TrapsFallStraight : MonoBehaviour {
 		if (transform.position.y <= minY)
 		{
 			trapSpawner.ReduceActiveAmount();
-			enabled = false;
+			gameObject.SetActive(false);
 		}
 	}
 }

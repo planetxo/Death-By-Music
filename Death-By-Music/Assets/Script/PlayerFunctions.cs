@@ -13,7 +13,7 @@ public class PlayerFunctions : MonoBehaviour
 
     public GameObject m_TrapSpawner;
 
-    public float m_Direction = 0;
+    private float m_Direction = 0;
 
     private float m_MinX = 0, m_MaxX = 0;
 
@@ -27,7 +27,7 @@ public class PlayerFunctions : MonoBehaviour
         float CamHeight = 2f * Camera.main.orthographicSize;
         float CamWidth = CamHeight * Camera.main.aspect / 2;
 
-        m_MoveSpeed =  m_Speed / CamWidth;
+		m_MoveSpeed = m_Speed;
 
         m_MinX = -CamWidth + GetComponent<Collider2D>().bounds.size.x / 2;
 
@@ -124,7 +124,7 @@ public class PlayerFunctions : MonoBehaviour
 
 
     //OnCollisionEnter2D() when colliding with trap
-    void OnCollisionEnter2D(Collision2D otherObject)
+    void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Trap")
         {
@@ -138,9 +138,5 @@ public class PlayerFunctions : MonoBehaviour
         {
             Debug.LogError("Collided with: ", otherObject.gameObject);
         }
-    }
-    void OnTriggerEnter2D()
-    {
-
     }
 }

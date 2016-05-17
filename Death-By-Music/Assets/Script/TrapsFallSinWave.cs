@@ -23,7 +23,7 @@ public class TrapsFallSinWave : MonoBehaviour {
 
 	int incremeantMultiplier;
 	float speed;
-	float minY;
+	public float minY;
 	TrapSpawner trapSpawner;
 	// Use this for initialization
 	void Start () {
@@ -52,7 +52,7 @@ public class TrapsFallSinWave : MonoBehaviour {
 		if(transform.position.y <= minY)
 		{
 			trapSpawner.ReduceActiveAmount();
-			enabled = false;
+			gameObject.SetActive(false);
 		}
 
 			

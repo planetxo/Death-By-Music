@@ -46,10 +46,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\PlayerFunctions.cs" />
+     <Compile Include="Assets\Script\Spawner.cs" />
      <Compile Include="Assets\Script\TrapSpawner.cs" />
      <Compile Include="Assets\Script\TrapsFallSinWave.cs" />
      <Compile Include="Assets\Script\TrapsFallStraight.cs" />
-     <Compile Include="Assets\Spawner.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

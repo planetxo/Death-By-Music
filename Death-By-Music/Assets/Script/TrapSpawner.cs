@@ -64,53 +64,26 @@ public class TrapSpawner : MonoBehaviour {
 		//Instantiate(Violin, new Vector3(Player.transform.position.x + randMoveAmount, 100, Player.transform.position.z), Player.transform.rotation);
 
 		//these for loops create the object pools
-		for(int i = 0; i < maxNumberOfHarps; i++)
+		for(int i = 0; i < maxNumberOfTraps; i++)
 		{
 			harpPool[i] = Instantiate(harp);
 			harpPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfViolins; i++)
-		{
 			violinPool[i] = Instantiate(violin);
 			violinPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfCellos; i++)
-		{
 			celloPool[i] = Instantiate(cello);
 			celloPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfDrums; i++)
-		{
 			drumPool[i] = Instantiate(drum);
 			drumPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfTubas; i++)
-		{
 			tubaPool[i] = Instantiate(tuba);
 			tubaPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfTrumpets; i++)
-		{
 			trumpetPool[i] = Instantiate(trumpet);
 			trumpetPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfClarinets; i++)
-		{
 			clarinetPool[i] = Instantiate(clarinet);
 			clarinetPool[i].SetActive(false);
-		}
-
-		for (int i = 0; i < maxNumberOfSaxs; i++)
-		{
 			saxPool[i] = Instantiate(sax);
 			saxPool[i].SetActive(false);
 		}
+
 
 	}
 	
@@ -155,7 +128,7 @@ public class TrapSpawner : MonoBehaviour {
 			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfViolins; i++)
 			{
-				if (!harpPool[i].activeSelf)
+				if (!violinPool[i].activeSelf)
 				{
 					violinPool[i].SetActive(true);
 					violinPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (harpPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
@@ -252,7 +225,7 @@ public class TrapSpawner : MonoBehaviour {
 			for (int i = 0; i < maxNumberOfSaxs; i++)
 			{
 				//Debug.Log("this is called");
-				if (saxPool[i].activeSelf == false)
+				if (!saxPool[i].activeSelf)
 				{
 					saxPool[i].SetActive(true);
 					saxPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (saxPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);

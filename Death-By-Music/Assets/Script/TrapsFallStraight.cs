@@ -29,6 +29,9 @@ public class TrapsFallStraight : MonoBehaviour {
 			speed = maxSpeed;
 		}
 
+		int rand = Random.Range(0, 359);
+		transform.Rotate(new Vector3(0, 0, 1), (float)rand);
+
 		minY = Camera.main.ScreenToWorldPoint( new Vector3(0, 0, 0)).y - (transform.lossyScale.y / 2);
 		trapSpawner = FindObjectOfType<TrapSpawner>();
 	}

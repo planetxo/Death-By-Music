@@ -23,8 +23,11 @@ public class TrapsFallSinWave : MonoBehaviour {
 
 	int incremeantMultiplier;
 	float speed;
+	float minY;
+	TrapSpawner trapSpawner;
 	// Use this for initialization
 	void Start () {
+		trapSpawner = FindObjectOfType<TrapSpawner>();
 		speed = baseSpeed;
 		incremeantMultiplier = (int)(Time.time / speedIncrementRate);
 		speed += speedIncrementSize * incremeantMultiplier;
@@ -32,6 +35,8 @@ public class TrapsFallSinWave : MonoBehaviour {
 		{
 			speed = maxFallSpeed;
 		}
+
+		minY = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y - (transform.lossyScale.y / 2);
 	}
 	
 	// Update is called once per frame
@@ -43,7 +48,12 @@ public class TrapsFallSinWave : MonoBehaviour {
 		updatePos.x = maxXVariation * Mathf.Sin(xVariationSpeed*Time.time);
 		updatePos.y -= maxFallSpeed;
 		transform.position = updatePos;
-
+		
+		if(transform.position.y <= minY)
+		{
+			trapSpawner.ReduceActiveAmount();
+			enabled = false;
+		}
 
 			
 

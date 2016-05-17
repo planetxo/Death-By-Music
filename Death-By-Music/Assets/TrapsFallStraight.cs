@@ -18,6 +18,8 @@ public class TrapsFallStraight : MonoBehaviour {
 	int incremeantMultiplier;
 	float timeSinceLastSpeedIncrease;
 	float speed;
+	float minY;
+	TrapSpawner trapSpawner;
 	// Use this for initialization
 	void Start () {
 		speed = baseSpeed;
@@ -27,7 +29,11 @@ public class TrapsFallStraight : MonoBehaviour {
 		{
 			speed = maxSpeed;
 		}
+
+		minY = Camera.main.ScreenToWorldPoint( new Vector3(0, 0, 0)).y - (transform.lossyScale.y / 2);
+		trapSpawner = FindObjectOfType<TrapSpawner>();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,5 +42,11 @@ public class TrapsFallStraight : MonoBehaviour {
 		Vector3 updatePos = transform.position;
 		updatePos.y -= speed;
 		transform.position = updatePos;
+
+		if (transform.position.y <= minY)
+		{
+			trapSpawner.ReduceActiveAmount();
+			enabled = false;
+		}
 	}
 }

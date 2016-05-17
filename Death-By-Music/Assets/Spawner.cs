@@ -14,9 +14,14 @@ public class Spawner : MonoBehaviour {
     public float[] DSP = new float[DSPsize];
     public bool[] SpawnArray = new bool[DSPsize];
     public float[] m_ThresholdValues = new float[DSPsize];
-    
-    // Update is called once per frame
-    void Update ()
+	// Update is called once per frame
+	TrapSpawner trapSpawner;
+	void Start()
+	{
+		trapSpawner = FindObjectOfType<TrapSpawner>();
+	}
+
+	void Update ()
     {
         FrameCounter++;
         if (FrameCounter > 2) //only update every 2 frames
@@ -56,7 +61,8 @@ public class Spawner : MonoBehaviour {
                                Color.green);
             }
         }
-
+		for (int i = 0; i < DSPsize; i++)
+		{ trapSpawner.m_spawnTrapsBool[i] = SpawnArray[i]; }
         
 	}
 }

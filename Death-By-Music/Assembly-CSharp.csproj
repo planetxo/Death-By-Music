@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PlayerFunctions.cs" />
+     <Compile Include="Assets\TrapSpawner.cs" />
+     <Compile Include="Assets\TrapsFallSinWave.cs" />
+     <Compile Include="Assets\TrapsFallStraight.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

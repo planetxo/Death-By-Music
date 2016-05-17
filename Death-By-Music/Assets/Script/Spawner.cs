@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour {
 	void Update ()
     {
         FrameCounter++;
-        if (FrameCounter > 2) //only update every 2 frames
+        if (FrameCounter > 1) //only update every 2 frames
         {
             AS.GetSpectrumData(Arr, 0, FFTWindow.BlackmanHarris); //Pass the spectrum data to the Array (Arr)
             FrameCounter = 0;

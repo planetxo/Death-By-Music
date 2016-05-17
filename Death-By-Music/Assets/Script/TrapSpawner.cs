@@ -19,7 +19,7 @@ public class TrapSpawner : MonoBehaviour {
 	public GameObject Player;
 
 	//Max number of traps available at any given time
-	const int maxNumberOfTraps = 10;
+	const int maxNumberOfTraps = 8;
 	const int maxNumberOfHarps = maxNumberOfTraps;
 	const int maxNumberOfViolins = maxNumberOfTraps;
 	const int maxNumberOfCellos = maxNumberOfTraps;
@@ -46,19 +46,12 @@ public class TrapSpawner : MonoBehaviour {
 
 
 	//minimum time between traps spawns
-	[Range(0,5)]
-	float minimumSpawnGap;
-	//maximum time between trap spawns
-	[Range(5, 10)]
-	float maximumSpawnGap;
+
 	//maximum amount it will spawn left or right of the play
 	[Range(0,5)]
 	public float randMoveAmount;
-	//how long since last trap spawned
-	float timeSinceLastSpawn;
-	//how long until next spawn
-	float spawnTimer = 0;
 
+	float randMove;
 
 
 	// Use this for initialization
@@ -68,8 +61,6 @@ public class TrapSpawner : MonoBehaviour {
 		{ m_spawnTrapsBool[i] = false; }
 		//y value of the top of the screen
 		screenHeight = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
-		//give spawn timer its first random value between min and max gap
-		spawnTimer = Random.Range(minimumSpawnGap, maximumSpawnGap);
 		//Instantiate(Violin, new Vector3(Player.transform.position.x + randMoveAmount, 100, Player.transform.position.z), Player.transform.rotation);
 
 		//these for loops create the object pools
@@ -127,15 +118,12 @@ public class TrapSpawner : MonoBehaviour {
 	void Update () {
 
 		//incremant how long since last spawn
-		timeSinceLastSpawn += Time.deltaTime;
+
 
 		//if the time since last spawn is greater than spawn timer, spawn a trap, reset the timer and set a new spawn time
-		if (timeSinceLastSpawn >= spawnTimer && trapCount < maxNumberOfTraps)
+		if (trapCount < maxNumberOfTraps)
 		{
-			
 			SpawnRandomTrap(m_spawnTrapsBool);
-			timeSinceLastSpawn = 0;
-			spawnTimer = Random.Range(minimumSpawnGap, maximumSpawnGap);
 		}
 
 	
@@ -148,13 +136,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[0] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfHarps; i++)
 			{
 				if (!harpPool[i].activeSelf)
 				{
 					harpPool[i].SetActive(true);
-					harpPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (harpPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					harpPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (harpPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -164,13 +152,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[1] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfViolins; i++)
 			{
 				if (!harpPool[i].activeSelf)
 				{
 					violinPool[i].SetActive(true);
-					violinPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (harpPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					violinPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (harpPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -180,13 +168,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[2] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfCellos; i++)
 			{
 				if (!celloPool[i].activeSelf)
 				{
 					celloPool[i].SetActive(true);
-					celloPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (celloPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					celloPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (celloPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -196,13 +184,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[3] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfDrums; i++)
 			{
 				if (!drumPool[i].activeSelf)
 				{
 					drumPool[i].SetActive(true);
-					drumPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (drumPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					drumPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (drumPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -212,13 +200,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[4] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfTubas; i++)
 			{
 				if (!tubaPool[i].activeSelf)
 				{
 					tubaPool[i].SetActive(true);
-					tubaPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (tubaPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					tubaPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (tubaPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -228,14 +216,14 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[5] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfTrumpets; i++)
 			{
 				if (!trumpetPool[i].activeSelf)
 				{
 					trumpetPool[i].SetActive(true);
-					trumpetPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (trumpetPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
-					trapCount ++;
+					trumpetPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (trumpetPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					trapCount++;
 					break;
 				}
 
@@ -244,13 +232,13 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[6] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfClarinets; i++)
 			{
 				if (!clarinetPool[i].activeSelf)
 				{
 					clarinetPool[i].SetActive(true);
-					clarinetPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (clarinetPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					clarinetPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (clarinetPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -260,14 +248,14 @@ public class TrapSpawner : MonoBehaviour {
 
 		if (spawnTrapsBool[7] && trapCount < maxNumberOfTraps)
 		{
-			randMoveAmount = Random.Range(-randMoveAmount, randMoveAmount);
+			randMove = Random.Range(-randMoveAmount, randMoveAmount);
 			for (int i = 0; i < maxNumberOfSaxs; i++)
 			{
 				//Debug.Log("this is called");
 				if (saxPool[i].activeSelf == false)
 				{
 					saxPool[i].SetActive(true);
-					saxPool[i].transform.position = new Vector3(Player.transform.position.x + randMoveAmount, screenHeight + (saxPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
+					saxPool[i].transform.position = new Vector3(Player.transform.position.x + randMove, screenHeight + (saxPool[i].GetComponent<Collider2D>().bounds.size.y / 2), Player.transform.position.z);
 					trapCount++;
 					break;
 				}
@@ -275,10 +263,9 @@ public class TrapSpawner : MonoBehaviour {
 			}
 		}
 	}
-
-
 	public void ReduceActiveAmount()
 	{
 		--trapCount;
+		Debug.Log("count reduced");
 	}
 }

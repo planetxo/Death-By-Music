@@ -110,10 +110,11 @@ public class PlayerFunctions : MonoBehaviour
     void TrapCollision()
     {
         --m_CurrentHealth;
-        if (m_CurrentHealth == 0)
-        {
-            gameObject.SetActive(false);
-        }
+		if (m_CurrentHealth == 0)
+		{
+			GetComponent<SpriteRenderer>().enabled = false;
+			GetComponentInChildren<ParticleSystem>().Emit(GetComponentInChildren<ParticleSystem>().maxParticles);
+		}
     }
 
     //PowerUps

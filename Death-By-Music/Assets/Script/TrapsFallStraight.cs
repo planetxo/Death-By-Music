@@ -3,20 +3,19 @@ using System.Collections;
 
 public class TrapsFallStraight : MonoBehaviour {
 
-	[Range(1,10)]
+	[Range(0,10)]
 	public float maxSpeed;
 
-	[Range(0,1)]
+	[Range(0,10)]
 	public float baseSpeed;
 
 	[Range(3, 8)]
 	public float speedIncrementRate;
 
-	[Range(0, 3)]
+	[Range(0, 10)]
 	public float speedIncrementSize;
 
 	int incremeantMultiplier;
-	float timeSinceLastSpeedIncrease;
 	float speed;
 	public float minY;
 	TrapSpawner trapSpawner;
@@ -37,7 +36,6 @@ public class TrapsFallStraight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeSinceLastSpeedIncrease += Time.deltaTime;
 
 		Vector3 updatePos = transform.position;
 		updatePos.y -= speed;

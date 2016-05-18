@@ -101,12 +101,6 @@ public class TrapSpawner : MonoBehaviour {
 			trapSpawnTimer = 0;
 		}
 
-		if (trapCount > maxNumberOfTraps && trapSpawnTimer > 0.3)
-		{
-			SpawnRandomTrap(m_spawnTrapsBool);
-			trapSpawnTimer = 0;
-		}
-
 	}
 
 	//spawns traps based on a bool array
@@ -246,6 +240,5 @@ public class TrapSpawner : MonoBehaviour {
 	public void ReduceActiveAmount()
 	{
 		--trapCount;
-		Debug.Log("count reduced");
 	}
 }

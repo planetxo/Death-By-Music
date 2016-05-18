@@ -246,6 +246,5 @@ public class TrapSpawner : MonoBehaviour {
 	public void ReduceActiveAmount()
 	{
 		--trapCount;
-		Debug.Log("count reduced");
 	}
 }

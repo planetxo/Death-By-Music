@@ -31,7 +31,7 @@ public class TrapsFallSinWave : MonoBehaviour {
 
 		xPosOrg = transform.position.x;
 		speed = baseSpeed;
-		incremeantMultiplier = (int)(Time.time / speedIncrementRate);
+		incremeantMultiplier = (int)(Time.timeSinceLevelLoad / speedIncrementRate);
 		speed += speedIncrementSize * incremeantMultiplier;
 		if (speed >= maxFallSpeed)
 		{
@@ -52,7 +52,7 @@ public class TrapsFallSinWave : MonoBehaviour {
 		Vector3 updatePos = transform.position;
 
 		updatePos.x = (maxXVariation * Mathf.Sin(xVariationSpeed*Time.time)) + xPosOrg;
-		updatePos.y -= speed;
+		updatePos.y -= speed * Time.timeScale;
 		transform.position = updatePos;
 		
 		if(transform.position.y <= minY)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerFunctions : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class PlayerFunctions : MonoBehaviour
 
     private Vector3 m_Velocity = new Vector3(0, 0, 0);
     private float m_MoveSpeed = 0;
+
+
+	public Sprite health1;
+	public Sprite health2;
+	public Sprite health3;
+	public Image healthbar;
+
+	public 
 
 
 	// Use this for initialization
@@ -110,10 +119,20 @@ public class PlayerFunctions : MonoBehaviour
     void TrapCollision()
     {
         --m_CurrentHealth;
-		if (m_CurrentHealth == 0)
+
+		if (m_CurrentHealth == 2)
+		{
+			healthbar.sprite = health2;
+		}
+		else if (m_CurrentHealth == 1)
+		{
+			healthbar.sprite = health1;
+		}
+		else if (m_CurrentHealth == 0)
 		{
 			GetComponent<SpriteRenderer>().enabled = false;
 			GetComponentInChildren<ParticleSystem>().Emit(GetComponentInChildren<ParticleSystem>().maxParticles);
+			Application.LoadLevel("menu");
 		}
     }
 

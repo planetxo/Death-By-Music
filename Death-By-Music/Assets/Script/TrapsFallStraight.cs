@@ -22,7 +22,7 @@ public class TrapsFallStraight : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		speed = baseSpeed;
-		incremeantMultiplier = (int)(Time.time / speedIncrementRate);
+		incremeantMultiplier = (int)(Time.timeSinceLevelLoad / speedIncrementRate);
 		speed += speedIncrementSize * incremeantMultiplier;
 		if (speed >= maxSpeed)
 		{
@@ -41,7 +41,7 @@ public class TrapsFallStraight : MonoBehaviour {
 	void Update () {
 
 		Vector3 updatePos = transform.position;
-		updatePos.y -= speed;
+		updatePos.y -= speed * Time.timeScale;
 		transform.position = updatePos;
 
 		if (transform.position.y <= minY)

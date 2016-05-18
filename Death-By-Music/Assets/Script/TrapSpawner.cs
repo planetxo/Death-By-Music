@@ -19,7 +19,7 @@ public class TrapSpawner : MonoBehaviour {
 	public GameObject Player;
 
 	//Max number of traps available at any given time
-	const int maxNumberOfTraps = 8;
+	const int maxNumberOfTraps = 12;
 	const int maxNumberOfHarps = maxNumberOfTraps;
 	const int maxNumberOfViolins = maxNumberOfTraps;
 	const int maxNumberOfCellos = maxNumberOfTraps;
@@ -33,6 +33,7 @@ public class TrapSpawner : MonoBehaviour {
 	public int trapCount;
 	//float storing y pos of top of screen
 	float screenHeight;
+	float trapSpawnTimer;
 
 	//creates a pool of each type of instrument, to the maximum amount on screen possible
 	GameObject[] harpPool = new GameObject[maxNumberOfHarps];
@@ -56,7 +57,7 @@ public class TrapSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//trapCount = 10;
+		trapSpawnTimer = 0;
 		for (int i = 0; i < 8; i++)
 		{ m_spawnTrapsBool[i] = false; }
 		//y value of the top of the screen
@@ -91,15 +92,21 @@ public class TrapSpawner : MonoBehaviour {
 	void Update () {
 
 		//incremant how long since last spawn
-
+		trapSpawnTimer += Time.deltaTime;
 
 		//if the time since last spawn is greater than spawn timer, spawn a trap, reset the timer and set a new spawn time
 		if (trapCount < maxNumberOfTraps)
 		{
 			SpawnRandomTrap(m_spawnTrapsBool);
+			trapSpawnTimer = 0;
 		}
 
-	
+		if (trapCount > maxNumberOfTraps && trapSpawnTimer > 0.3)
+		{
+			SpawnRandomTrap(m_spawnTrapsBool);
+			trapSpawnTimer = 0;
+		}
+
 	}
 
 	//spawns traps based on a bool array

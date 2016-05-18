@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour {
 
     public float[] DSP = new float[DSPsize];
     public bool[] SpawnArray = new bool[DSPsize];
+	[Range(0,1)]
     public float[] m_ThresholdValues = new float[DSPsize];
 	// Update is called once per frame
 	TrapSpawner trapSpawner;
@@ -45,7 +46,8 @@ public class Spawner : MonoBehaviour {
         for(int i = 0; i < DSP.Length; ++i)
         {
             SpawnArray[i] = false;
-            if(DSP[i] > m_ThresholdValues[i])
+			trapSpawner.m_spawnTrapsBool[i] = SpawnArray[i];
+			if (DSP[i] > m_ThresholdValues[i])
             {
                 Debug.DrawLine(new Vector3(i,          0, 0),
                                new Vector3(i, DSP[i] * 4, 0),
@@ -53,7 +55,8 @@ public class Spawner : MonoBehaviour {
 
                 //If a value is over threshold, spawn relevant instrument
                 SpawnArray[i] = true;
-            }
+				trapSpawner.m_spawnTrapsBool[i] = SpawnArray[i];
+			}
             else
             {
                 Debug.DrawLine(new Vector3(i, 0, 0),
@@ -61,8 +64,6 @@ public class Spawner : MonoBehaviour {
                                Color.green);
             }
         }
-		for (int i = 0; i < DSPsize; i++)
-		{ trapSpawner.m_spawnTrapsBool[i] = SpawnArray[i]; }
         
 	}
 }

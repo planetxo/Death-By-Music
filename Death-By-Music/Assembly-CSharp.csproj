@@ -45,12 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Score.cs" />
      <Compile Include="Assets\Script\Exit.cs" />
      <Compile Include="Assets\Script\HelpScreen.cs" />
      <Compile Include="Assets\Script\Pause.cs" />
      <Compile Include="Assets\Script\Play.cs" />
      <Compile Include="Assets\Script\PlayerFunctions.cs" />
+     <Compile Include="Assets\Script\Score.cs" />
      <Compile Include="Assets\Script\Spawner.cs" />
      <Compile Include="Assets\Script\StartGame.cs" />
      <Compile Include="Assets\Script\TrapSpawner.cs" />
